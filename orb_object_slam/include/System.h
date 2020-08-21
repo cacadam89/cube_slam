@@ -27,6 +27,7 @@
 #include <opencv2/core/core.hpp>
 
 #include "ORBVocabulary.h"
+#include <unistd.h>
 
 namespace ORB_SLAM2
 {
