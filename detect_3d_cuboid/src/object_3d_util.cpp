@@ -500,7 +500,12 @@ void fuse_normalize_scores_v2(const VectorXd &dist_error, const VectorXd &angle_
     {
         int breaking_num = round(float(raw_data_size) / 3.0 * 2.0);
         std::vector<int> dist_sorted_inds(raw_data_size);
-        std::iota(dist_sorted_inds.begin(), dist_sorted_inds.end(), 0);
+        // std::iota(dist_sorted_inds.begin(), dist_sorted_inds.end(), 0);
+        int tmp_ind = 0, tmp_val = 0;
+        for (auto & el : dist_sorted_inds) {
+            dist_sorted_inds[tmp_ind] = tmp_val;
+            tmp_val++;
+        }
         std::vector<int> angle_sorted_inds = dist_sorted_inds;
 
         sort_indexes(dist_error, dist_sorted_inds, breaking_num);
@@ -526,7 +531,12 @@ void fuse_normalize_scores_v2(const VectorXd &dist_error, const VectorXd &angle_
     else
     {
         final_keep_inds.resize(raw_data_size); //don't change anything.
-        std::iota(final_keep_inds.begin(), final_keep_inds.end(), 0);
+        // std::iota(final_keep_inds.begin(), final_keep_inds.end(), 0);
+        int tmp_ind = 0, tmp_val = 0;
+        for (auto & el : final_keep_inds) {
+            final_keep_inds[tmp_ind] = tmp_val;
+            tmp_val++;
+        }        
     }
 
     int new_data_size = final_keep_inds.size();

@@ -528,7 +528,12 @@ void detect_3d_cuboid::detect_cuboid(const cv::Mat &rgb_img, const Matrix4d &tra
 		}
 
 		std::vector<int> sort_idx_small(all_combined_score.rows());
-		std::iota(sort_idx_small.begin(), sort_idx_small.end(), 0);
+		// std::iota(sort_idx_small.begin(), sort_idx_small.end(), 0);
+		int tmp_ind = 0, tmp_val = 0;
+		for (auto & el : sort_idx_small) {
+			sort_idx_small[tmp_ind] = tmp_val;
+			tmp_val++;
+		}
 		sort_indexes(all_combined_score, sort_idx_small, actual_cuboid_num_small);
 		for (int ii = 0; ii < actual_cuboid_num_small; ii++) // use sorted index
 		{
